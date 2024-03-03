@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <h2>Budget Left</h2>
+  <ul>
+    {% for category_sum in category_sums %}
+    <li>{{ category_sum.category__name }}: {{ category_sum.total_price|floatformat:2 }}</li>
+  {% endfor %}
+  </ul>
+  <!-- Figure this shit out. -->
+
+  <h2>Bank Accounts</h2>
+  {% for account_amt in account_amts %}
+    <li> {{ account_amt }}</li>
+    {% endfor %}
+
+<!-- Recent Transactions -->
+<div>
+  <h2>Recent Transactions</h2>
+  <ul>
+    {% for transaction in recent_transactions %}
+      <li>Desc: {{ transaction.name }} Amount: {{ transaction.price }} Category: {{ transaction.category }}  
+      Purchase Date: {{ transaction.date }} Account: {{transaction.account}} - <a href="{% url 'delete-trans' transaction.id %}">Delete Transaction</a> </li>
+
+    {% endfor %}
+  </ul>
+  <!-- Add more things here for homepage -->
+
+</div>
+{% endblock %}
